@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>JSX</title>
+            <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+            <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        </head>
+        <style>
+            #root {
+                /* cursor: pointer;
+                font-size: 20pt;
+                background-color: lightblue;
+                padding: 1px 20px; */
+            }
+        </style>
+        <body>
+            <h1>React</h1>
+            <div id="root" onclick="doCount();">wait...</div>
+            <script type="text/babel">
+                let dom = document.querySelector('#root')
+
+                //変数の中にテキスト、リンクを書く
+                let title = "タイトル";
+                let message = "NewMessage";
+                let link ="https://google.com";
+                
+                //CSSを書く
+                const mg_a = {
+                    fontSize: "20px",
+                    color: "red",
+                    border: "1px solid blue"
+                }
+
+                
+                //関数を書く
+                let printMsg  = function(mg_a, size, color) {
+                    const style = {
+                        fontSize: size + "pt",
+                        fontWeight: '700',
+                        color: color,
+                        border: "1px solid" + color
+                    };
+                    return <p style={style}>{mg_a}</p>;
+                }
+
+
+                let el = (
+                    <div>
+                        <h2 style={mg_a}>JSX sample</h2>
+                        <p>sampleText</p>
+                        <h3>{title}</h3>
+                        <p>{message}</p>
+                        <a href={link} alt="">リンク</a>
+
+                        {printMsg('最初のメッセージ', 30, '#ddd')}
+                        {printMsg('次のメッセージ', 20, '#aaa')}
+                        {printMsg('最後のメッセージ', 10, '#333')}
+                    </div>
+                );
+                //引数にしてレンダリングする
+                ReactDOM.render(el, dom)
+            </script>
+        </body>
+    </html>
