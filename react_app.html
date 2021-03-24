@@ -9,5 +9,13 @@
         <body>
             <h1>React</h1>
             <div id="root">wait...</div>
+            <script>
+                let dom = document.querySelector('#root');
+                //React.createElement('タグ名', 属性, 'こんてんつ')
+                let element  =  React.createElement(
+                    'p', {}, 'Hellow React'
+                );
+                ReactDOM.render(element, dom);
+            </script>
         </body>
     </html>
