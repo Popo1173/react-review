@@ -25,6 +25,11 @@
                 let title = "タイトル";
                 let message = "NewMessage";
                 let link ="https://google.com";
+
+                //真偽値
+                let message_true = "メッセージがtrue。";
+                let message_false = "メッセージがfalse";
+                let flg = true;
                 
                 //CSSを書く
                 const mg_a = {
@@ -57,6 +62,17 @@
                         {printMsg('最初のメッセージ', 30, '#ddd')}
                         {printMsg('次のメッセージ', 20, '#aaa')}
                         {printMsg('最後のメッセージ', 10, '#333')}
+
+                        // 論理 && 演算子によるインライン If
+                        // 条件部分が true であれば、&& の後に書かれた要素を出力
+                        {flg &&
+                            <p style={mg_a}>{message_true}</p>
+                        }
+                        // ? 条件演算子
+                        {flg ?
+                            <p style={mg_a}>{message_true}</p>:
+                            <p style={mg_a}>{message_false}</p>
+                        }
                     </div>
                 );
                 //引数にしてレンダリングする
