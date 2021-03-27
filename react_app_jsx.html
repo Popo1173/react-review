@@ -25,14 +25,37 @@
                 let title = "タイトル";
                 let message = "NewMessage";
                 let link ="https://google.com";
-                
+
+                //真偽値
+                let message_true = "メッセージがtrue。";
+                let message_false = "メッセージがfalse";
+                let flg = true;
+
+                //配列の場合
+                const list = {
+                    fontSize: "18px",
+                    padding: "5px 50px",
+                }
+                let data = [
+                    <li>One</li>,
+                    <li>Twon</li>,
+                    <li>Three</li>
+                ]
+
+                //.map関数
+                let dataMap = [
+                    {name: 'Taro', mail: 'taro@gmailcom', age: 45},
+                    {name: 'Hanako', mail: 'hanako@gmailcom', age: 20},
+                    {name: 'Ken', mail: 'ken@gmailcom', age: 45}
+                ]
+
+
                 //CSSを書く
                 const mg_a = {
                     fontSize: "20px",
                     color: "red",
                     border: "1px solid blue"
                 }
-
                 
                 //関数を書く
                 let printMsg  = function(mg_a, size, color) {
@@ -57,6 +80,41 @@
                         {printMsg('最初のメッセージ', 30, '#ddd')}
                         {printMsg('次のメッセージ', 20, '#aaa')}
                         {printMsg('最後のメッセージ', 10, '#333')}
+
+                        // 論理 && 演算子によるインライン If
+                        // 条件部分が true であれば、&& の後に書かれた要素を出力
+                        {flg &&
+                            <p style={mg_a}>{message_true}</p>
+                        }
+                        // ? 条件演算子
+                        {flg ?
+                            //true の場合
+                            <p style={mg_a}>{message_true}</p>:
+                            //false の場合                            
+                            <p style={mg_a}>{message_false}</p>
+                        }
+                        //Listを配列に入れる
+                        <ul style={list}>
+                            {data}
+                        </ul>
+
+                        //map 関数
+                        //配列に保管されている値を新たな配列を生成して値を返す
+                        <table>
+                            <tr>
+                                <th>name</th>
+                                <th>mail</th>
+                                <th>age</th>
+                            </tr>
+                        {/* ... */}
+                        {dataMap.map((value) =>(
+                            <tr>
+                                <td>{value.name}</td>
+                                <td>{value.mail}</td>
+                                <td>{value.age}</td>
+                            </tr>
+                        ))}
+                        </table>
                     </div>
                 );
                 //引数にしてレンダリングする
