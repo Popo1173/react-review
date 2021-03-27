@@ -42,13 +42,19 @@
                     <li>Three</li>
                 ]
 
-                //.map関数
+                //.map関数用の配列
                 let dataMap = [
                     {name: 'Taro', mail: 'taro@gmailcom', age: 45},
                     {name: 'Hanako', mail: 'hanako@gmailcom', age: 20},
                     {name: 'Ken', mail: 'ken@gmailcom', age: 45}
                 ]
 
+                //アロー関数
+                let arrow = {
+                    url: 'https://google.com',
+                    title: 'Google',
+                    caption: '※googleの検索サイトです'
+                }
 
                 //CSSを書く
                 const mg_a = {
@@ -106,7 +112,10 @@
                                 <th>mail</th>
                                 <th>age</th>
                             </tr>
-                        {/* ... */}
+                        {/* 
+                            配列名.map((引数)=>(戻り値))
+                            引数のvalue にdataから取り出しオブジェクトが渡される
+                        */}
                         {dataMap.map((value) =>(
                             <tr>
                                 <td>{value.name}</td>
@@ -115,6 +124,18 @@
                             </tr>
                         ))}
                         </table>
+
+                        //アロー関数で出力
+                        { 
+                            (()=> 
+                                <dl>
+                                    <dt><dfn>{arrow.title}</dfn></dt>
+                                    <dd>{arrow.caption}</dd>
+                                    <dd><a href={arrow.url}>※{arrow.title}</a></dd>
+                                </dl>
+                            )()}
+
+
                     </div>
                 );
                 //引数にしてレンダリングする
