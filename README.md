@@ -1,4 +1,55 @@
-# react-review
+# JSX
+
+## 値の渡し方
+```
+let title = "タイトル";
+let message = "NewMessage";
+let link ="https://google.com";
+
+let el = (
+    <p>{title}</p>
+    <p>{message}</p>
+    <a href={link}>{title}</a></p>    
+)
+```
+
+## styleの渡し方
+```
+const mg_a = {
+    fontSize: "20px",
+    color: "red",
+    border: "1px solid blue"
+}
+
+let el = (
+    <p style={mg_a}>hogehoge</p>
+)
+```
+
+## a関数の戻り値を使う
+printMsg関数が実行されたら、以下の引数が渡される
+``` {printMsg('最初のメッセージ', 30, '#ddd')}```
+
+以下がの内容がreturnされる
+```return <p style={style}>{mg_a}</p>;```
+
+```
+let printMsg  = function(mg_a, size, color) {
+    const style = {
+        fontSize: size + "pt",
+        fontWeight: '700',
+        color: color,
+        border: "1px solid" + color
+    };
+    return <p style={style}>{mg_a}</p>;
+}
+let el = (
+    {printMsg('最初のメッセージ', 30, '#ddd')}
+)
+
+```
+
+
 
 ## 論理 && 演算子によるインライン If 条件部分が true であれば、&& の後に書かれた要素を出力
 ```
@@ -14,4 +65,23 @@
     //false の場合                            
     <p style={mg_a}>{message_false}</p>
 }
+```
+
+## map関数
+配列名.map((引数)=>(戻り値))　　
+引数のvalue に配列から取り出しオブジェクトが渡される
+```
+let dataMap = [
+    {name: 'Taro', mail: 'taro@gmailcom', age: 45},
+    {name: 'Hanako', mail: 'hanako@gmailcom', age: 20},
+    {name: 'Ken', mail: 'ken@gmailcom', age: 45}
+]
+                
+{dataMap.map((value) =>(
+    <tr>
+        <td>{value.name}</td>
+        <td>{value.mail}</td>
+        <td>{value.age}</td>
+    </tr>
+))}
 ```
