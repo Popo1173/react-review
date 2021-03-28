@@ -1,4 +1,21 @@
 # JSX
+基本　jsxを使ってレンダリング　　
+DOMを取得する　　
+```let dom = document.querySelector('#root')```
+JSをreturnする　
+※必ず一つのタグでラップされる必要があります。　　
+複数の要素を返却することはできません。複数の要素で構成される場合は、div等の要素で必ずラップしましょう。
+ただし、divを用いると、DOMに不要なノードが追加されることになります。
+好ましくない場合は、React.Fragmentを使用することで、形式だけの要素を作成できます。
+```
+let el = (
+    <div>　⇨　<React.Fragment> ⇨　<>
+        hogehoge
+    </div> ⇨　</React.Fragment> ⇨　</>
+)
+```
+jsxの中身をレンダリングする 
+```ReactDOM.render(el, dom)```
 
 ## 値の渡し方
 ```
@@ -48,9 +65,6 @@ let el = (
 )
 
 ```
-
-
-
 ## 論理 && 演算子によるインライン If 条件部分が true であれば、&& の後に書かれた要素を出力
 ```
 {flg &&
@@ -66,7 +80,6 @@ let el = (
     <p style={mg_a}>{message_false}</p>
 }
 ```
-
 ## map関数
 配列名.map((引数)=>(戻り値))  
 引数のvalue に配列から取り出しオブジェクトが渡される
@@ -84,4 +97,22 @@ let dataMap = [
         <td>{value.age}</td>
     </tr>
 ))}
+```
+## クリックして更新する
+onClickしたらイベントが発火　　
+counterがインクリメントする
+```
+var counter = 0;
+let doAction = (event) => {
+    counter++
+    let el = (
+        <div>
+            <p onClick={doAction} style={p}>
+                count: {counter}
+            </p>
+        </div>
+    )
+    ReactDOM.render(el,dom)
+}
+doAction()
 ```
