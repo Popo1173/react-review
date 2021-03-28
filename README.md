@@ -1,7 +1,7 @@
 # JSX
 基本　jsxを使ってレンダリング  
 DOMを取得する  
-```let dom = document.querySelector('#root')```
+```let dom = document.querySelector('#root')```  
 JSをreturnする  　　
 ※必ず一つのタグでラップされる必要があります。  
 複数の要素を返却することはできません。複数の要素で構成される場合は、div等の要素で必ずラップしましょう。  
