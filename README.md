@@ -116,3 +116,33 @@ let doAction = (event) => {
 }
 doAction()
 ```
+
+## doChange, doAction
+```
+let message = 'お名前をどうぞ:'
+let in_val = ''
+
+
+let doChange = (event)=>{
+    //event.target.value valueの値を取り出してin_val変数に格納
+    in_val = event.target.value
+    message = 'こんにちは' + in_val + 'さん'
+}
+let doAction = (event)=> {
+    let el = (
+        <div>
+            <p style={p}>{message}</p>
+            <div>
+                {/* 
+                    inputに値が入る
+                    doChangeが発火
+                    in_val  に入力された値格納
+                    messageに入力された値格納
+                    onClickでdoActionが発火し、Domをレンダーする
+                */}
+                <input type="text" id="input" style={input} onChange={doChange} />
+                <button onClick={doAction} style={input}>CLICK</button>
+            </div>                                
+        </div>
+    )
+```
