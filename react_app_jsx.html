@@ -74,7 +74,6 @@
                     return <p style={style}>{mg_a}</p>;
                 }
 
-
                 let el = (
                     <div>
                         <h2 style={mg_a}>JSX sample</h2>
@@ -140,6 +139,21 @@
                 );
                 //引数にしてレンダリングする
                 ReactDOM.render(el, dom)
+
+                //表示を更新する関数
+                var counter =0;
+                let el = (
+                        <div>
+                            <p>count:{counter}</p>
+                        </div>
+                    )                
+
+                
+                setInterval(()=> {
+                    counter++;
+                    ReactDOM.render(el, dom)
+                },1000)
+
             </script>
         </body>
     </html>
