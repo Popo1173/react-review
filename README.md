@@ -1,5 +1,5 @@
 # JSX
-基本　jsxを使ってレンダリング　　
+基本　jsxを使ってレンダリング  
 DOMを取得する　　
 ```let dom = document.querySelector('#root')```
 JSをreturnする　　
