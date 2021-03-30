@@ -164,6 +164,7 @@ finction コンポーネント名 (引数)　{
 ## 属性を渡す
 ```
 .hoge {color: 'red'}
+
 function Welcome(props) {
     return <p style={props.style}>{props.name}</p>
 }
@@ -174,4 +175,4 @@ let el (
     </div>    
 )
 ```
-DOM結果：　<p style="color: red;">YAMADA</p>
+DOM結果：<p style="color: red;">YAMADA</p>
