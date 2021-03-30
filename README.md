@@ -160,3 +160,18 @@ finction コンポーネント名 (引数)　{
 指定した関数名を指定する  
 コンポーネント名は必ず大文字から  
 ```<コンポーネント名 />　⇦　関数でreturnしたエレメントが出力される```
+
+## 属性を渡す
+```
+.hoge {color: 'red'}
+function Welcome(props) {
+    return <p style={props.style}>{props.name}</p>
+}
+
+let el (
+    <div>
+        <Welcome name="YAMADA" style={hoge} />
+    </div>    
+)
+```
+DOM結果：　<p style="color: red;">YAMADA</p>
