@@ -175,4 +175,4 @@ let el (
     </div>    
 )
 ```
-DOM結果：<p style="color: red;">YAMADA</p>
+DOM結果：```<p style="color: red;">YAMADA</p>```
