@@ -1,0 +1,52 @@
+ <!DOCTYPE html>
+ <html lang="ja">
+     <head><title>Smaple</title></head>
+    <body>
+        <h1>Index</h1>
+        <script>
+            class MyObj {
+                constructor(r, g, b) {
+                    this.red = r;
+                    this.green = g;
+                    this.blue = b;
+                }
+                
+                //getで値を取り出せるようにする
+                //get 構文は、オブジェクトのプロパティを関数に結びつけ、プロパティが参照された時に関数が呼び出される
+                get hex() {
+                    //プロパティの値を16進数の文字列に変換してreturn
+                    return '#'
+                    + ('00' + this.red.toString(16)).substr(-2)
+                    + ('00' + this.blue.toString(16)).substr(-2)
+                    + ('00' + this.green.toString(16)).substr(-2)
+                }
+                
+                //  hex()の値をthis.hexで呼び出してreturn
+                get startP(){
+                    return '<p style="background-color:' + this.hex +' ">';
+                }
+                
+                //  returnで</p>を返す
+                get endP(){
+                    return '</p>';
+                }
+                //出力
+                print(){
+                    document.write(this.startP);
+                    document.write('RED: ' + this.red + '<br>');
+                    document.write('GREEN: ' + this.green + '<br>');
+                    document.write('BLUE: ' + this.green + '<br>');
+                    document.write(this.endP);
+                }
+            }
+            let ob = new MyObj(255,200,200);
+            ob.print();
+
+            let ob2 = new MyObj(0,150,200);
+            ob2.print();
+            
+
+        </script>
+    </body> 
+</html>
+ 
