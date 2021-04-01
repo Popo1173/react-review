@@ -38,14 +38,43 @@
                     document.write('BLUE: ' + this.green + '<br>');
                     document.write(this.endP);
                 }
+            };
+
+            class UltraMyObj extends MyObj {
+                get startP(){
+                    return '<style>'
+                        + 'th { border1px solid gray; padding:5px 20px;}'
+                        + 'td { border1px solid gray; padding:5px 20px;}'
+                        + '</style><table>'
+                }
+
+                get header() {
+                    return '<tr><th style="background-color:'
+                        + this.hex + '">' + this.hex + '<th/></tr>'
+                }
+
+                body(){
+                    document.write('<tr><td>RED:    '+ this.red + '</td></tr>');
+                    document.write('<tr><td>GREEN:'  + this.green + '</td></tr>');
+                    document.write('<tr><td>BLUE:'   + this.blue + '</td></tr>');                    
+                }
+
+                get endP(){
+                    return '</table>';
+                }
+
+                print(){
+                    document.write(this.startP);
+                    document.write(this.header);                    
+                    this.body();
+                    document.write(this.endP);
+                }
             }
             let ob = new MyObj(255,200,200);
             ob.print();
 
-            let ob2 = new MyObj(0,150,200);
+            let ob2 = new UltraMyObj(0,150,200);
             ob2.print();
-            
-
         </script>
     </body> 
 </html>
