@@ -14,6 +14,34 @@ class MyObj {
     let ob = new MyObj(255,200,200);
 ```
 
+## get, set メソッド
+getメソッドはプロパティのように値を取り出せる
+setメソッドはプロパティを値のように代入できる
+```
+class MyObj {
+
+get hex() {
+    //プロパティの値を16進数の文字列に変換してreturn
+    return '#'
+    + ('00' + this.red.toString(16)).substr(-2)
+    + ('00' + this.blue.toString(16)).substr(-2)
+    + ('00' + this.green.toString(16)).substr(-2)
+}
+//  hex()の値をreturnの中で呼び出す
+get startP(){
+    return '<p style="background-color:' + this.hex +' ">';
+}
+}
+関数()
+```
+
+## extends
+すでにあるクラスを継承できる
+```
+class NewClassName MyObj(継承元ClassName) {
+    constructorやget,set メソッドは継承するため記述不要になる
+}
+```
 # JSX
 ## 基本　jsxを使ってレンダリング  
 DOMを取得する  
