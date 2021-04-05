@@ -43,6 +43,7 @@ class NewClassName MyObj(継承元ClassName) {
     constructorやget,set メソッドは継承するため記述不要になる
 }
 ```
+
 # JSX
 ## 基本　jsxを使ってレンダリング  
 DOMを取得する  
@@ -221,3 +222,17 @@ let el (
 )
 ```
 DOM結果：```<p style="color: red;">YAMADA</p>```
+
+
+## render() 
+コンポーネントをレンダリングするメソッド 
+引数のないシンプルなメソッドで、returnをもっていて表示するエレメントを返す
+
+## export default App;
+コンポーネント側でエクスポートしてインポートできるようにする
+## import App from './App';
+コンポーネントをインポートする
+
+
+
+
