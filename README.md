@@ -234,5 +234,9 @@ DOM結果：```<p style="color: red;">YAMADA</p>```
 コンポーネントをインポートする
 
 
+# React PJ 
+- 1.アクセスすると「inde.html」が呼ばれる 
+- 2.index.html内で、index.jsが読み込まれる
+- 3.index.js内で「App.js」が呼ばれる
 
 
