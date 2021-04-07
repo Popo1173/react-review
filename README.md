@@ -240,3 +240,31 @@ DOM結果：```<p style="color: red;">YAMADA</p>```
 - 3.index.js内で「App.js」が呼ばれる
 
 
+```
+index.js 
+//APP.js の<App />コンポーネントで引数を持たせて　APPコンポーネントに渡す
+ReactDOM.render(
+  <React.StrictMode>
+    <App title="App" message="this is component!!"/>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
+app.js
+//引数として渡された値を指定した属性にいれて表示する
+class App extends Component {
+  constructor(props) {
+    super();
+    this.title = props.title;
+    this.message = props.message;
+  }
+  render() {
+    return  <div>
+      <h1>{this.title}</h1>
+      <p>{this.message}</p>
+    </div>
+  }
+}
+```
+
