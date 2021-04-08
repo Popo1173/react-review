@@ -282,6 +282,6 @@ class App extends Component {
 ```
 
 ## コンポーネントを別ファイルから呼び出す
-``` import ComponentName from './ComponentFileName'
+``` import ComponentName from './ComponentFileName'```
 
 
