@@ -303,3 +303,52 @@ stateで使う値をまとめて設定しておく。
 ```
 this.state = { 値を用意 }
 ```
+- stateの値は「this.state.xx」で取り出せる 
+- 属性の値は「this.prpos.xx」で取り出せる 
+## stateの更新
+コンポーネントの「setState」メソッドを使う 
+現在のstateの値を利用して新たな値を設定する場合は、関数を引数に指定する。アロー関数を用意する 
+```(state) =>```
+※setStateは値を追加するだけで削除はしません。
+※setStateは同じ値があった場合は更新する
+※setStateは値がstateに追加される
+
+## bindメソッド
+定義された関数に対して、thisを代入できるメソッドです。 
+また、その名の通り関数などをbind（紐づけ）することができます。
+
+```
+//stateのプロパティをセット
+  constructor(props){
+    super(props);
+    this.state = {
+      counter: 0,
+      msg: 'count start',
+    };
+    this.doAction = this.doAction.bind(this);
+  }
+
+  //doAction関数内で、setStateで値を書き換える
+  //引数（e） 発生したイベントの情報をまとめたオブジェクトが入る。
+  　 e.targetでイベントの発生したエレメントを取り出す
+  doAction(e){
+    this.setState((state)=>({
+      //counter プロパティの値を+1する
+      counter: state.counter + 1,
+      //msg の文字列を書き換える
+      msg: 'count: ' + state.counter
+    }));
+  }
+    render() {
+    return  <div>
+      <h1>React</h1>
+      <p style={this.msgStyle}>{this.state.msg}</p>
+      //ボタンをクリックしたら、onClickイベントで「doAction()」を発火させる
+      <button style={this.btnStyle} onClick={this.doAction}>Click</button>
+    </div>;
+  }
+```
+
+
+
+
