@@ -5,10 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App title="App" message="this is component!!"/>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <App msg="Hellow App!!"/>, document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
