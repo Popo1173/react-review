@@ -317,6 +317,7 @@ this.state = { 値を用意 }
 定義された関数に対して、thisを代入できるメソッドです。 
 また、その名の通り関数などをbind（紐づけ）することができます。
 
+## state解説
 ```
 //stateのプロパティをセット
   constructor(props){
@@ -325,6 +326,7 @@ this.state = { 値を用意 }
       counter: 0,
       msg: 'count start',
     };
+   //bind して「this」を使えるようにする
     this.doAction = this.doAction.bind(this);
   }
 
@@ -349,6 +351,9 @@ this.state = { 値を用意 }
   }
 ```
 
-
+## memo
+三項演算子
+変数 = 条件式 ? trueの時の値 : falseの時の値 ; 
+```var ans = ( ( Math.random() * 100 ) > 50 ) ? 'larger' : 'smaller';```
 
 
