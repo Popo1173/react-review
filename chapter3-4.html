@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>簡単なcomponent</title>
+            <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+            <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        </head>
+        <body>
+            <h1>簡単なcomponent</h1>
+            <div id="root">wait...</div>
+            <script type="text/babel">
+                let dom = document.querySelector('#root')
+
+                const msg = {
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    padding: "10px",
+                    border: "solid 5px yellow"
+                }
+
+                class Hello extends React.Component {
+                    //constructorで「super(props)」を実行する
+                    constructor(props){
+                        super(props)
+                    }
+
+                    render(){
+                        return <p style={msg}>Hello</p>
+                    }                    
+                }
+
+                let el = (
+                    <div>
+                        <Hello />
+                    </div>
+                )
+                ReactDOM.render(el, dom)
+ 
+            </script>
+        </body>
+    </html>
