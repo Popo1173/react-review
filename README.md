@@ -292,7 +292,20 @@ class App extends Component {
 stateの値を操作することで、コンポーネントの値を操作できる。
 - コンポーネントの「状態を表す値を保管」するためのもの。
 - コンポーネントの「現在の状態」を扱うためのも。
-
+- オブジェクトや配列で設定している場合はステートの値を直接操作してはだめ 
+  コンポーネントクラスのプロパティとして値を用意してsetStateで値をセットする。
+```
+data =[]
+    //listのプロパティとする
+    this.state = {
+      list:this.data
+    };
+    //配列にpushして、setStateで更新する
+    this.data.push({x:x, y:y});
+    this.setState ({
+      list:this.data
+    });
+```
 プロパティは変更してもコンポーネントの表示は変わらないため、  
 ReactDOM.renderを呼び出して表示を更新していたが、stateを使うことで、
 値を変更するだけで、自動的に表示が更新される。
