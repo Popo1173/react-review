@@ -4,58 +4,63 @@ import Rect from './Rect'
 import './App.css';
 
 class App extends Component {
+  //空の配列
+  data = []
 
-  msgStyle1 = {
+  msgStyle = {
     fontSize: "24px",
     color: "#900",
     margin: "20px 0px",
-    padding: "5px",
-    borderBottom: "2px solid #900"
+    padding: "5px"
   }
-  msgStyle2 = {
-    fontSize: "20pt",
-    color: "white",
-    backgroundColor: "#000",
-    margin: "20px 0px",
-    padding: "5px",
-    boderBottom: "2px solid #900"
-  }
-  btnStyle = {
-    fontSize: "20pt",
-    padding: "0 10px"
+  area = {
+    width: "500px",
+    height: "500px",
+    border: "1px solid blue"
   }
 
+  //dataプロパティをlistステートで管理
   constructor(props){
     super(props);
     this.state = {
-      counter: 0,
-      msg: 'count start!',
-      flg: true,
+      list:this.data
     };
     this.doAction = this.doAction.bind(this);
   }
-
-  doAction(e){
-    this.setState((state)=>({
-      counter: state.counter + 1,
-      msg: 'count: ' + state.counter,
-      flg: !state.flg
-    }));
+  //引数(e)からクリックした画面x,y座標を取得
+  //data[]にpushする
+  //setStateで値を更新する
+  doAction(e) {
+    let x = e.pageX
+    let y = e.pageY
+    this.data.push({x:x, y:y});
+    this.setState ({
+      list:this.data
+    });
   }
-  
+  //draw関数で四角形を描画する
+  draw(d){
+    let s = {
+      position: "absolute",
+      left: (d.x - 25) + "px",
+      top: (d.y - 25)  + "px",
+      width: "50px",
+      height: "50px",
+      backgroundColor: "#66f3"
+    };
+    return <div style={s}></div>
+  }
+
   render() {
     return  <div>
       <h1>React</h1>
-      {this.state.flg ?
-        <p style={this.msgStyle1}>count: {this.state.msg}</p>
-        
-        :
-        <p style={this.msgStyle2}>count: {this.state.msg}です。</p>
-      }
-
-      <button style={this.btnStyle} onClick={this.doAction}>Click</button>
+      <h2 style={this.msgStyle}>show rect</h2>
+      {/* /クリック位置を崇徳する/ */}
+      <div style={this.area} onClick={this.doAction}>
+        {/*data配列をmap関数に入れる　 */}
+        {this.data.map((value)=>this.draw(value))}
+      </div>
     </div>;
   }
-  
 }
 export default App;
