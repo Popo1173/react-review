@@ -298,7 +298,7 @@ class App extends Component {
 子
 {/* 親から渡渡された値を取り出す */}
 <Text>{this.props.title}</Text>
-
+```
 ## state
 stateの値を操作することで、コンポーネントの値を操作できる。
 - コンポーネントの「状態を表す値を保管」するためのもの。
