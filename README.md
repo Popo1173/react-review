@@ -380,4 +380,5 @@ this.state = { 値を用意 }
 変数 = 条件式 ? trueの時の値 : falseの時の値 ; 
 ```var ans = ( ( Math.random() * 100 ) > 50 ) ? 'larger' : 'smaller';```
 
+##　event.preventDefault();
 
