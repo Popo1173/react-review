@@ -382,3 +382,13 @@ this.state = { 値を用意 }
 
 ##　event.preventDefault();
 
+## String.prototype.split()
+String を指定した区切り文字列で分割することにより、文字列の配列に分割します。
+```
+const str = 'The quick brown fox jumps over the lazy dog.';
+const words = str.split(' ');
+console.log(words[3]);
+// ３番目区切りの文字を出力
+// expected output: "fox"
+```
+
