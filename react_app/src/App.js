@@ -5,12 +5,8 @@ import './App.css';
 
 //表示するコンポーネント
 class App extends Component {
-  //配列
-  data = [
-    "This is list sample",
-    "これはリストのサンプルです",
-    "配列をリストに変換します"
-  ];
+  input = '';
+
   //スタイル
   msgStyle = {
     fontSize: "24px",
@@ -18,69 +14,67 @@ class App extends Component {
     margin: "20px 0px",
     padding: "5px"
   }
-  //dataプロパティをlistステートで管理
   constructor(props){
     super(props);
     this.state = {
-      list:this.data
+      message: 'type your name:'
     };
+    this.doChange = this.doChange.bind(this);
+    this.doSubmit = this.doSubmit.bind(this);
+  }
+
+  doChange(event) {
+    this.input = event.target.value;
+  }
+
+  doSubmit(event) {
+    this.setState({
+      message: 'Hello. ' + this.input + '!!'
+    });
+    event.preventDefault();
   }
   //レンダリング
   render() {
     return  <div>
       <h1>React</h1>
-      <h2 style={this.msgStyle}>show rect</h2>
-      {/* /ListComponentにtitleを引数として渡す/ */}
-      <List title="サンプルリスト" data={this.data} />
+      <Message title="Children!">
+        これはコンテンツコンポーネントです。
+        マルでテキストを分割し、リストにして表示します。
+        改行は必要ありません。
+      </Message>
     </div>;
   }
 }
 
-//リスト全体をまとめて表示するComponent
-class List extends Component {
-  number = 1;
-  title = {
-    fontSize: "20px",
-    fontWeight: "bold",
-    color: "blue"
-  };
-  render() {
-    let data = this.props.data;
-    return (
-      <div>
-        <p style={this.title}>{this.props.title}</p>
-        <ul>
-          {/* map関数でdata配列を繰り返す */}
-          {data.map((item)=>
-            // ItemComponentでnumber属性に番号（nmuber=1）、valueに配列の中身（テキスト）を指定
-            <Item number={this.number++} value={item} key={this.number} />
-          )}
-        </ul>
-      </div>
-    );
-  }
-}
-
-//リストの各項目を表示するComponent
-class Item extends Component {
+class Message extends Component {
   li = {
-    listStyleType: "square",
     fontSize: "16px",
     color: "#06",
     margin: "0px",
     padding: "0px"
   }
-  num = {
-    fontWeight: "bold",
-    color: "red"
-  }
   render() {
-    return (
-      <li style={this.li}>
-        <span style={this.num}>[{this.props.number}]</span>
-        {this.props.value}
-      </li>
-    );
+    //Messageコンポーネントの中に書かれているテキストを取り出す
+    let content = this.props.children;
+    //テキストを「。」で区切る
+    let arr = content.split('。');
+    //区切ったテキストを入れる配列を作る
+    let arr2 = [];
+    //ループさせる　arr配列の値の数までループする
+    for(let i = 0; i < arr.length; i++){
+      //trim()でスペースを削除してarr2配列に値を格納
+      if(arr[i].trim() !=''){
+        arr2.push(arr[i])
+      }
+    }
+    //変数listにarr2配列を新しい配列に入れる
+    let list = arr2.map((value,key)=>(
+      <li style={this.li} key={key}>{value}。</li>)
+      );
+      return <div>
+        <h2>{this.props.title}</h2>
+        <ol>{list}</ol>
+      </div>
   }
 }
 export default App;
