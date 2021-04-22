@@ -384,6 +384,7 @@ this.state = { 値を用意 }
 
 ## String.prototype.split()
 String を指定した区切り文字列で分割することにより、文字列の配列に分割します。
+[参考](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/split)
 ```
 const str = 'The quick brown fox jumps over the lazy dog.';
 const words = str.split(' ');
@@ -392,3 +393,6 @@ console.log(words[3]);
 // expected output: "fox"
 ```
 
+## String.prototype.trim()
+文字列の両端の空白を削除します。このコンテクストでの空白には、空白文字（スペースやタブ、ノーブレークスペースなど）とすべての改行文字（LF や CR など）を含みます。
+[参考](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/trim)
