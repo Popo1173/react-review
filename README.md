@@ -396,3 +396,10 @@ console.log(words[3]);
 ## String.prototype.trim()
 文字列の両端の空白を削除します。このコンテクストでの空白には、空白文字（スペースやタブ、ノーブレークスペースなど）とすべての改行文字（LF や CR など）を含みます。
 [参考](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/trim)
+
+## Function.prototype.bind()
+bind() メソッドは、呼び出された際に this キーワードに指定された値が設定される新しい関数を生成します。 
+この値は新しい関数が呼び出されたとき、一連の引数の前に置かれます。
+[参考](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+[参考](https://foreignkey.toyao.net/archives/763)
+```例)    this.doChange = this.doChange.bind(this); ```
