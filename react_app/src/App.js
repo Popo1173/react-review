@@ -32,12 +32,12 @@ class App extends Component {
   doChange(event) {
     this.input = event.target.value;
   }
-
+  //stateの値を更新して表示
   doSubmit(event) {
     this.setState({
       message: 'Hello. ' + this.input + '!!'
     });
-    //ブラウザのデフォルト挙動をクリア
+    //発生したイベントをなくす　送信されなくなる
     event.preventDefault();
   }
   //レンダリング
