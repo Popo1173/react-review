@@ -48,7 +48,9 @@ class App extends Component {
       <form onSubmit={this.doSubmit}>
         <label>
           <spna style={this.inputStyle}></spna>
-          Message:<input type="text" style={this.inputStyle} onChange={this.doChange}></input>
+          {/* inputを必須項目にし、「半角アルファベット、スペース、カンマ、ピリオドのみ入力化とする」 */}
+          {/* required：必須項目、pattern：正規表現のパターンを指定 */}
+          Message:<input type="type" style={this.inputStyle} onChange={this.doChange} required pattern="[A-za-z _,.]+" />
         </label>
         <input type="submit" style={this.inputStyle} value="click" />
       </form>
