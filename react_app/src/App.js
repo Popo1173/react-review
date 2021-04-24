@@ -28,11 +28,11 @@ class App extends Component {
     this.doChange = this.doChange.bind(this);
     this.doSubmit = this.doSubmit.bind(this);
   }
-
+  //入力された値を取得する
   doChange(event) {
     this.input = event.target.value;
   }
-  //stateの値を更新して表示
+  //dosubumit()発火したらsetStateで値を更新する
   doSubmit(event) {
     this.setState({
       message: 'Hello. ' + this.input + '!!'
