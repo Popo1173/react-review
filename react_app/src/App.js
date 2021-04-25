@@ -3,64 +3,54 @@ import React, { Component } from 'react';
 import Rect from './Rect'
 import './App.css';
 
-//変数にオブジェクトを代入
-let data = {
-  title: 'Title',
-  message: 'this is sample message'
-}
 
-//React.createContext(data)　でコンテキストを設定
-const sampleContext = React.createContext(data);
+let theme = {
+  light: {
+    backgroundColor : "#eef",
+    color: "#006",
+    padding: "10px"
+  },
+  dark: {
+    backgroundColor : "#006",
+    color: "#eef",
+    padding: "10px"    
+  }
+};
+
+const ThemeContex = React.createContext(theme.light);
 
 class App extends Component {
+  static contextType = ThemeContex;
 
-  newdata = {
-    title: '新しいタイトル',
-    message: 'これは新しいメッセージです'
-  };
-
-  render() {
-    return(
-      <div>
-        <h1>Context</h1>
-        <Title />
-        <Message />
-        <sampleContext.Provider value={this.newdata} >
-          <Title />
-          <Message />
-        </sampleContext.Provider>
-        <Title />
-        <Message />        
+  render(){
+    return (
+      <div style={this.context}>
+        <Title value="Content page" />
+        <Message value="This is Content sample" />
+        <Message value="※これはテーマのサンプルです。" />
       </div>
     );
   }
 }
 
 class Title extends Component {
-  //this.context.プロパティ名 で値を取り出せるようにする
-  static contextType = sampleContext;
+  static contextType = ThemeContex;
 
   render(){
     return(
-      <div>
-        {/* data titleプロパティの値を取り出す */}
-        <h2>{this.context.title}</h2>
-      </div>
+      <h2 style={this.context}>{this.props.value}</h2>
     );
   }
 }
 
 class Message extends Component {
-//this.context.プロパティ名 で値を取り出せるようにする
-  static contextType = sampleContext;
+  static contextType = ThemeContex;
 
   render(){
     return(
-      <div>
-        {/* data messageプロパティの値を取り出す */}
-        <p>{this.context.message}</p>
-      </div>      
-      );
+      <p style={this.context}>{this.props.value}</p>
+    );
   }
 }
+
 export default App;
