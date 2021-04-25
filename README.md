@@ -498,16 +498,47 @@ function 関数名(state = ステート, アクション){
 }
 ```
 
-## コネクト
+## connect(コネクト）
 コンポーネントにストアを接続するための関数
 ```
 //変数 connect(ステートに関する値)(コネクトするコンポーネント)
 App = connect()(App);
 
 ```
+2つの関数が組み合わされている
+wrapWithConnectという関数オブジェクトを返す。それを（App）で実行した結果をAppを代入している
+```
+let wrapWithConnent = connect()
+App = wrapWithConnect(App);
+```
 
+## dispatch(ディスパッチ）
+レデューサーを呼び出して値を操作する機能
+.dispatchでレデューサーを呼び出す
+```this.props.dispatch({type: 'DECREMENT'});```
 
+## action(アクション）
+実行する内容に関連する情報をまとめた関数
+アクションは必ず「type」という値を用意する
+```
+  doAction(e){
+    if(e.shiftKey) {
+      //this.props.dispatchの引数に{type: 'DECREMENT'})を指定して、レデューサーを読み出して処理を実行
+      this.props.dispatch({type: 'DECREMENT'});
+    }else {
+      this.props.dispatch({type: 'INCREMENT'})
+    }
+  }
+```
 
+## 全体の流れ
+1.ステートを用意する
+2.レデューサーを用意する
+3.ストアを用意する
+
+1.ディスパッチを呼びだす
+2.レデューサーが呼び出される
+3.アクションタイプで処理を分岐
 - - -
 
 
