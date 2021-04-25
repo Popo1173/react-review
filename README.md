@@ -409,6 +409,40 @@ newdata = {title: 'NewTitle', message: 'NewMessage'}
 </コンテキスト.Provider>
 ```
 
+## コンテキストでテーマを切り替える
+様々なスタイルの属性をコンテキストとして用意しておき、切り替える
+```
+let theme = {
+  light: {
+    backgroundColor : "#eef",
+    color: "#006",
+    padding: "10px"
+  },
+  dark: {
+    backgroundColor : "#006",
+    color: "#eef",
+    padding: "10px"    
+  }
+};
+//「theme.light or dark」でスタイルを切り替える
+//appコンポーネント内の「this.context」で取得するスタイルを切り替えれる
+const ThemeContex = React.createContext(theme.light);
+
+class App extends Component {
+  static contextType = ThemeContex;
+
+  render(){
+    return (
+      <div style={this.context}>
+        <Title value="Content page" />
+        <Message value="This is Content sample" />
+        <Message value="※これはテーマのサンプルです。" />
+      </div>
+    );
+  }
+}
+```
+
 
 ## memo
 三項演算子
