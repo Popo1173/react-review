@@ -396,10 +396,10 @@ this.context.title　で取り出せる
 ```
 
 ## Provider
-特定のコンポーネントで一時的に値を変える. 
-JSXタグ内で記述するのが使いやすい. 
-createContextで作成したコンテキストの「Provider」プロパティとして用意されるコンポーネント. 
-Providerの外側コンポーネントには影響しない. 　
+特定のコンポーネントで一時的に値を変える  
+JSXタグ内で記述するのが使いやすい  
+createContextで作成したコンテキストの「Provider」プロパティとして用意されるコンポーネント  
+Providerの外側コンポーネントには影響しない  
 ```
 //valueに新しい値を設定する
 <コンテキスト.Provider value="値">
