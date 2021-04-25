@@ -1,58 +1,76 @@
 import React, { Component } from 'react';
-//Rect コンポーントインポート
-import Rect from './Rect'
+//react-redux のconnect をインポートする
+import { connect } from 'react-redux';
 import './App.css';
 
 
-let theme = {
-  light: {
-    backgroundColor : "#eef",
-    color: "#006",
-    padding: "10px"
-  },
-  dark: {
-    backgroundColor : "#006",
-    color: "#eef",
-    padding: "10px"    
-  }
-};
-
-//React.createContext(theme.light)　でコンテキストを設定
-//theme.darkに切り替えることでスタイルを切り替える
-const ThemeContex = React.createContext(theme.light);
+//ステートのマッピング
+function mappingState (state) {
+  return state;
+}
 
 class App extends Component {
-  static contextType = ThemeContex;
+  constructor(props){
+    super(props);
+  }
 
   render(){
     return (
-      <div style={this.context}>
-        <Title value="Content page" />
-        <Message value="This is Content sample" />
-        <Message value="※これはテーマのサンプルです。" />
+      <div>
+        <h1>Redux</h1>
+        <Message />
+        <Button />
       </div>
     );
   }
 }
+//ストアのコネクト
+App = connect()(App);
 
-class Title extends Component {
-  static contextType = ThemeContex;
-
-  render(){
-    return(
-      <h2 style={this.context}>{this.props.value}</h2>
-    );
-  }
-}
-
+//メッセージ表示コンポーネント
 class Message extends Component {
-  static contextType = ThemeContex;
-
+  style= {
+    fontSize: "20px",
+    padding: "20px 5px"
+  }
   render(){
     return(
-      <p style={this.context}>{this.props.value}</p>
+      <p style={this.style}>
+        {this.props.message}:{this.props.counter}
+      </p>
     );
   }
 }
+//ストアのコネクト
+Message = connect(mappingState)(Message);
+
+//ボタン表示
+class Button extends Component {
+  style= {
+    fontSize: "16px",
+    padding: "5px 10px"
+  }
+
+  constructor(props) {
+    super(props);
+    this.doAction =this.doAction.bind(this)
+  }
+
+  doAction(e){
+    if(e.shiftKey) {
+      this.props.dispatch({type: 'DECREMENT'});
+    }else {
+      this.props.dispatch({type: 'INCREMENT'})
+    }
+  }
+
+  render(){
+    return(
+      <button style={this.style} onClick={this.doAction}>Click</button>
+    );
+  }
+}
+//ストアのコネクト
+Button = connect()(Button);
 
 export default App;
