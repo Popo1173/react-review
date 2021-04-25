@@ -401,8 +401,10 @@ JSXタグ内で記述するのが使いやすい
 createContextで作成したコンテキストの「Provider」プロパティとして用意されるコンポーネント  
 Providerの外側コンポーネントには影響しない  
 ```
+newdata = {title: 'NewTitle', message: 'NewMessage'}
+
 //valueに新しい値を設定する
-<コンテキスト.Provider value="値">
+<コンテキスト.Provider value="newdata">
  ....コンポーネント....
 </コンテキスト.Provider>
 ```
