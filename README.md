@@ -377,17 +377,35 @@ this.state = { 値を用意 }
   }
 ```
 
-## コンテキスト
+## コンテキスト Context
 - コンポーネント全てに同じ値を渡して処理をする、全体で共通して利用する値 
 - クラスの外側で利用する
-```const 変数 = React.createContext('値')```
-コンポーネント内で以下のように記述しておく 
+```
+let data = {title: タイトル, message: メッセージ}
+
+const sampledata(変数) = React.createContext(data)
+```
+
+コンテキストを使用するコンポーネント内で以下のように記述しておく 
 ```
 //設定する値は「createContextで作成した変数
-static contextType = コンテキスト;
-//設定されたコンテキストの値はthis.contextプロパティにまとめられ、
-this.context.〇〇　で取り出せる
+static contextType = sampledata(変数);
 
+//設定されたコンテキストの値はthis.contextプロパティにまとめられ、
+this.context.title　で取り出せる
+```
+
+## Provider
+特定のコンポーネントで一時的に値を変える 
+JSXタグ内で記述するのが使いやすい
+createContextで作成したコンテキストの「Provider」プロパティとして用意されるコンポーネント 
+Providerの外側コンポーネントには影響しない
+```
+//valueに新しい値を設定する
+<コンテキスト.Provider value="値">
+```
+ ....コンポーネント....
+</コンテキスト.Provider>
 ```
 
 
