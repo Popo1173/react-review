@@ -5,6 +5,7 @@ import './App.css';
 
 
 //ステートのマッピング
+//このコンポーネント利用するステートを返す関数
 function mappingState (state) {
   return state;
 }
@@ -36,12 +37,15 @@ class Message extends Component {
   render(){
     return(
       <p style={this.style}>
+        {/* ストアの値を取得 */}
         {this.props.message}:{this.props.counter}
       </p>
     );
   }
 }
 //ストアのコネクト
+//connect を呼び出し引数にmappingState
+//
 Message = connect(mappingState)(Message);
 
 //ボタン表示
@@ -58,6 +62,7 @@ class Button extends Component {
 
   doAction(e){
     if(e.shiftKey) {
+      //this.props.dispatchの引数に{type: 'DECREMENT'})を指定して、レデューサーを読み出して処理を実行
       this.props.dispatch({type: 'DECREMENT'});
     }else {
       this.props.dispatch({type: 'INCREMENT'})
