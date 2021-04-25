@@ -17,6 +17,8 @@ let theme = {
   }
 };
 
+//React.createContext(theme.light)　でコンテキストを設定
+//theme.darkに切り替えることでスタイルを切り替える
 const ThemeContex = React.createContext(theme.light);
 
 class App extends Component {
