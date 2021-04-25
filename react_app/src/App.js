@@ -3,60 +3,52 @@ import React, { Component } from 'react';
 import Rect from './Rect'
 import './App.css';
 
+//変数にオブジェクトを代入
+let data = {
+  title: 'Title',
+  message: 'this is sample message'
+}
+
+//React.createContext(data)　でコンテキストを設定
+const sampleContext = React.createContext(data);
+
 class App extends Component {
-  input = '';
-
-  msgStyle = {
-    fontSize: "20px",
-    color: "#900",
-    margin: "20px 0px",
-    padding: "5px"
+  render() {
+    return(
+      <div>
+        <h1>Context</h1>
+        <Title />
+        <Message />
+      </div>
+    );
   }
+}
 
-  constructor(props) {
-    super(props);
-    this.state ={
-      message: 'Type Your Name'
-    };
-    this.doCheck = this.doCheck.bind(this);
-  }
-
-  //
-  doCheck(event) {
-    alert(event.target.value + "は長すぎます。５文字以内にする");
-  }
+class Title extends Component {
+  //this.context.プロパティ名 で値を取り出せるようにする
+  static contextType = sampleContext;
 
   render(){
-    return <div>
-      <h1>REACT</h1>
-      <h2>{this.state.message}</h2>
-      {/*  最大5文字の入力チェック */}
-      <Message maxlength="5" onCheck={this.doCheck} />
-    </div>
-    }
+    return(
+      <div>
+        {/* data titleプロパティの値を取り出す */}
+        <h2>{this.context.title}</h2>
+      </div>
+    );
   }
+}
 
-  class Message extends Component {
-    inputStyle = {
-      fontSize: "12px",
-      padding: "5px"
-    }
-    constructor(props){
-      super(props);
-      this.doChange = this.doChange.bind(this);
-    }
-    // onChangeで値が更新されるとdoCheckが実行され、値のチェックが行われる
-    //入力された値とコンポーント親から渡された「maxlength="5"」を比較
-    //入力された値が5以上であれば、「onCheck」を実行すし、
-    doChange(e) {
-      if(e.target.value.length > this.props.maxlength) {
-        this.props.onCheck(e);
-        //入力された文字列を？？０番目から5番目までe.target.value代入する　
-        e.target.value = e.target.value.substr(0,this.props.maxlength);
-      }
-    }
-    render(){
-      return <input type="text" style={this.inputStyle} onChange={this.doChange} />
-    }
+class Message extends Component {
+//this.context.プロパティ名 で値を取り出せるようにする
+  static contextType = sampleContext;
+
+  render(){
+    return(
+      <div>
+        {/* data messageプロパティの値を取り出す */}
+        <p>{this.context.message}</p>
+      </div>      
+      );
   }
+}
 export default App;
