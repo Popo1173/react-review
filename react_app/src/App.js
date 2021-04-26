@@ -57,12 +57,13 @@ class Button extends Component {
 
   constructor(props) {
     super(props);
+    //doAActionをbind
     this.doAction =this.doAction.bind(this)
   }
 
   doAction(e){
     if(e.shiftKey) {
-      //this.props.dispatchの引数に{type: 'DECREMENT'})を指定して、レデューサーを読み出して処理を実行
+      //this.props.dispatchの引数に{type: 'DECREMENT'})を指定して、レデューサーを呼び出して処理を実行
       this.props.dispatch({type: 'DECREMENT'});
     }else {
       this.props.dispatch({type: 'INCREMENT'})
