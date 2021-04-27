@@ -12,7 +12,26 @@
 - mode: どういう操作をしたかを表す値
 - fdata: 検索したメモをまとめておくもの
 
-
+# reducerはただの分岐
+アクションタイプの値をチェックし、それぞれのcaseで分岐をかける. 
+「タイプごとの分岐」を行うだけにし、具体的な処理は関数として用意しておく。  
+注意：returnする時の「関数は、ステートを戻り値とする」
+```
+export function memoReducer(state = initData, action){
+    //アクションタイプの値をチェックし、それぞれのcaseで分岐
+    switch(action.type) {
+        case 'ADD':
+            return addReduce(state, action); ← 戻り値ステート
+        case 'DELETE':
+            return deleteReduce(state, action);　← 戻り値ステート
+        case 'FIND':
+            return findReduce(state, action)　← 戻り値ステート
+        
+        default:
+            return state
+    }
+}
+```
 
 
 
