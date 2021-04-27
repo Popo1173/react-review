@@ -10,6 +10,7 @@ const initData ={
 
 //レデューサー
 export function memoReducer(state = initData, action){
+    //アクションタイプの値をチェックし、それぞれのcaseで分岐
     switch(action.type) {
         case 'ADD':
             return addReduce(state, action);
