@@ -32,9 +32,30 @@ export function memoReducer(state = initData, action){
     }
 }
 ```
-
-
-
+return する関数<br>
+reducerで呼び出す関数は常に新しいステートをreturnすることが約束
+```
+//メモの追加レデュース処理
+function addReduce(state, action){
+    let data = {
+        //messageを格納
+        message: action.message,
+        //時刻を生成
+        create:new Data()
+    };
+    //入力された値をslice()で末尾まで取りだして変数newdataに格納
+    let newdata = state.data.slice();
+    //変数newdataの値をdata配列に追加
+    newdata.unshift(data);
+    return {
+        //追加する内容
+        data:newdata,
+        message:'Added',
+        mode: 'default',
+        fdata:[]
+    };
+}
+```
 
 
 
