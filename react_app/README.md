@@ -56,6 +56,30 @@ function addReduce(state, action){
     };
 }
 ```
+# アクションクリエーター
+ディスパッチの際に引数として渡す「アクション」を作成する関数。<br>
+returnされたアクションは、そのままディスパッチ等で送信されレデューサーによって処理を実行される。<br>
+アクションクリエータがあれば、ディスパッチの呼び出しが簡単になる<br>
+下の例）アクションタイプ：「type」、値：「message」<br>
+
+```
+export function addMemo(text) {
+    return {
+        type: 'ADD',
+        message: text
+    }
+}
+```
+
+# slice()について
+配列の各要素を取り出して新しい配列を作るもの<br>
+Reduxでは、setStateする時、stateにある値をそのまま渡すと変更なしと判断され<br>
+値が更新されれない。なので、slice()メソッドを使って配列を作りなして、setStateする必要がある。
+````
+let newdata = state.data.slice();
+````
+
+
 
 
 

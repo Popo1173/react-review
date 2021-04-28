@@ -34,9 +34,9 @@ function addReduce(state, action){
         //時刻を生成
         create:new Data()
     };
-    //入力された値を取りだして変数newdataに格納
+    //入力された値を取りだして変数newdataにslice();で生成
     let newdata = state.data.slice();
-    //変数newdataの値をdata配列に追加
+    //変数newdataの値をdata配列の一番最初に追加
     newdata.unshift(data);
     return {
         //追加する内容
