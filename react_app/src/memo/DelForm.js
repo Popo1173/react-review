@@ -1,29 +1,24 @@
 import React,  {Component} from 'react';
 import { connect } from 'react-redux';
-import { addMemo } from './Store';
+import { deleteMemo } from './Store';
 
-class AddForm extends Component {
+class  DelForm extends Component {
     input = {
-        fontSize: "16pt",
+        fontSize: "12pt",
         color: "#006",
         padding: "1px",
-        margin: "5px 0px"
+        margin: "5px 0"
     }
     btn = {
-        fontSize: "14pt",
+        fontSize: "10pt",
         color: "#006",
         padding: "2px 10px"
     }
-    message = {
-        fontSize: "16pt",
-        color: "#006",
-        margin: "5px 10px"
-    }    
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            message:''
+            number: 0
         }
         this.doChange = this.doChange.bind(this);
         this.doAction = this.doAction.bind(this);
@@ -32,31 +27,35 @@ class AddForm extends Component {
     doChange(e) {
         //入力されたした値を取得
         this.setState({
-            message: e.target.value
+            number: e.target.value
         });
     }
     doAction(e) {
         e.preventDefault();
         //addMemoアクションクリエータでアクションを作成
-        let action = addMemo(this.state.message);
+        let action = deleteMemo(this.state.number);
         //dispatchで実行 Storeのレデューサーにtype:'ADD'のアクションが送られる
         this.props.dispatch(action);
         this.setState({
-            message: ''
+            number: 0
         });
-    }
+    } 
 
     render(){
-        return (
+        let n = 0;
+        let items = this.props.data.map((value)=>(
+            <option key={n} value={n++} >{value.message.substring(0,10)}</option>
+        ));
+        return(
             <div>
-                <p style={this.message}>{this.props.message}</p>
                 <form onSubmit={this.doAction}>
-                    <input type="text" size="40" onChange={this.doChange}
-                        style={this.input} value={this.state.message} required />
-                    <input type="submit" style={this.btn} value="Add" />
+                    <select onChange={this.doChange} defaultValue="-1" style={this.input}>
+                        {items}
+                    </select>
+                    <input type="submit" style={this.btn} value="Del" />
                 </form>
             </div>
-        );
+        )
     }
-}
-export default connect((state)=>state)(AddForm)
+}//
+export default connect((state)=>state)(DelForm)

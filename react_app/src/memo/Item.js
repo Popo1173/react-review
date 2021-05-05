@@ -17,7 +17,7 @@ class Item extends Component {
         border: "1px solid lightblue",
         minwidth: "300px"
     }
-    data = {
+    date = {
         fontSize: "14pt",
         backgroundColor: "white",
         color: "darkblue",
@@ -36,8 +36,8 @@ class Item extends Component {
                 {/* inedx 通し番号を渡す */}
                 <th style={this.th}>NO, {this.props.index}</th>
                 {/* messageを渡す */}
-                <td style={this.td}>{this.value.message}</td>
-                <td style={this.data}>{f}</td>
+                <td style={this.td}>{this.props.value.message}</td>
+                <td style={this.date}>{f}</td>
             </tr>
         );
     }

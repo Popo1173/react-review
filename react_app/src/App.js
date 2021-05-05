@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import Memo from './memo/Memo';
-import AddForm from './memo/FindForm';
-import FindForm from './memo/DelForm';
-
+import AddForm from './memo/AddForm';
+import FindForm from './memo/FindForm';
+import DelForm from './memo/DelForm';
 
 
 //APPコンポーネント
@@ -13,9 +13,9 @@ class App extends Component {
   td = {
     with: "250px"
   }
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   render(){
     return (
       <div>
@@ -36,4 +36,4 @@ class App extends Component {
   }
 }//APP-Component
 
-export default App;
+export default connect()(App);

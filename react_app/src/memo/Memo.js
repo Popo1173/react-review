@@ -8,12 +8,14 @@ class Memo extends Component {
         let data;
         let n = 0;
         switch (this.props.mode) {
+            //this.props.data 配列をmapで<Item />オブジェクトの配列に変換
             case 'default':
             data = this.props.data.map((value)=>(
                 <Item key={value.message} value={value} index={n++} />
             ));
             break;
 
+            //this.props.fdata 配列をmapで<Item />オブジェクトの配列に変換
             case 'find':
             data = this.props.fdata.map((value)=>(
                 <Item key={value.message} value={value} index={n++} />                
@@ -24,6 +26,7 @@ class Memo extends Component {
             data = this.props.data.map((value)=>(
                 <Item key={value.message} value={value} index={n++} />                
             ));
+            break;
 
             default:
             data = this.props.data.map((value)=>(
@@ -35,4 +38,5 @@ class Memo extends Component {
         );
     }
 }
+//コンポーネントをコネクト
 export default connect((state)=>state) (Memo);

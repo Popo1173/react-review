@@ -2,7 +2,7 @@ import {createStore} from 'redux';
 
 
 const initData ={
-    data: [{message: 'Sample data', created:new Data()}],
+    data: [{message: 'Sample data', created:new Date()}],
     message: 'please type message:',
     mode: 'default',
     fdata:[]
@@ -31,7 +31,7 @@ function addReduce(state, action){
         //messageを格納
         message: action.message,
         //時刻を生成
-        create:new Data()
+        created:new Date()
     };
     //入力された値を取りだして変数newdataにslice();で生成
     let newdata = state.data.slice();
@@ -49,14 +49,14 @@ function addReduce(state, action){
 function findReduce(state, action) {
     let f = action.find;
     let fdata = [];
-    state.data = forEach((value) => {
+    state.data.forEach((value) => {
         if(value.message.indexOf(f) >= 0) {
             fdata.push(value);
         }
     });
     return {
         data:state.data,
-        message: 'Find "' + f + '":',
+        message: 'find "' + f + '":',
         mode: 'find',
         fdata:fdata
     };
@@ -64,7 +64,7 @@ function findReduce(state, action) {
 //メモ削除のレデュース処理
 function deleteReduce(state, action) {
     let newdata = state.data.slice();
-    newdata.slice(action.index, 1);
+    newdata.splice(action.index, 1);
     return {
         data:newdata,
         message: 'delete "' + action.index + '":',
@@ -83,7 +83,7 @@ export function addMemo(text) {
     }
 }
 //メモ削除のアクション
-export function deletMemo(num) {
+export function deleteMemo(num) {
     return {
         type: 'DELETE',
         index: num
