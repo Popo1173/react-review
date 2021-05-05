@@ -25,7 +25,6 @@ export function memoReducer(state = initData, action){
 }
 
 //レデュースアクション
-
 //メモの追加レデュース処理
 function addReduce(state, action){
     let data = {
@@ -98,5 +97,5 @@ export function findMemo(text) {
     }
 }
 
-//ストアを作成
+//ストアを作成してエクスポート
 export default createStore(memoReducer);
