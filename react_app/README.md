@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# メモの構造を考える
+データを用意するにあたり以下のデータをストアに保管、管理する。  
+変数initDataに初期値を用意し、それを使ってレデューサーを作成する. 
+## 値について
+「message」「created」2つの値をもつオブジェクトを用意し、その配列を「ストア」で保管・管理する
+- message: メモのテキスト
+- created: 作成した時刻
+
+### その他のデータ
+- data: メモのデータ
+- message: 表示するメッセージ
+- mode: どういう操作をしたかを表す値
+- fdata: 検索したメモをまとめておくもの
+
+# reducerはただの分岐
+アクションタイプの値をチェックし、それぞれのcaseで分岐をかける. 
+「タイプごとの分岐」を行うだけにし、具体的な処理は関数として用意しておく。  
+注意：returnする時の「関数は、ステートを戻り値とする」
+```
+export function memoReducer(state = initData, action){
+    //アクションタイプの値をチェックし、それぞれのcaseで分岐
+    switch(action.type) {
+        case 'ADD':
+            return addReduce(state, action); ← 戻り値ステート
+        case 'DELETE':
+            return deleteReduce(state, action);　← 戻り値ステート
+        case 'FIND':
+            return findReduce(state, action)　← 戻り値ステート
+        
+        default:
+            return state
+    }
+}
+```
+return する関数<br>
+reducerで呼び出す関数は常に新しいステートをreturnすることが約束
+```
+//メモの追加レデュース処理
+function addReduce(state, action){
+    let data = {
+        //messageを格納
+        message: action.message,
+        //時刻を生成
+        create:new Data()
+    };
+    //入力された値をslice()で末尾まで取りだして変数newdataに格納
+    let newdata = state.data.slice();
+    //変数newdataの値をdata配列に追加
+    newdata.unshift(data);
+    return {
+        //追加する内容
+        data:newdata,
+        message:'Added',
+        mode: 'default',
+        fdata:[]
+    };
+}
+```
+# アクションクリエーター
+ディスパッチの際に引数として渡す「アクション」を作成する関数。<br>
+returnされたアクションは、そのままディスパッチ等で送信されレデューサーによって処理を実行される。<br>
+アクションクリエータがあれば、ディスパッチの呼び出しが簡単になる<br>
+下の例）アクションタイプ：「type」、値：「message」<br>
+
+```
+export function addMemo(text) {
+    return {
+        type: 'ADD',
+        message: text
+    }
+}
+```
+
+# slice()について
+配列の各要素を取り出して新しい配列を作るもの<br>
+Reduxでは、setStateする時、stateにある値をそのまま渡すと変更なしと判断され<br>
+値が更新されれない。なので、slice()メソッドを使って配列を作りなして、setStateする必要がある。
+````
+let newdata = state.data.slice();
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 大項目
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 中項目
 
 In the project directory, you can run:
 
-### `yarn start`
+### 小項目
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+リンク [http://google.com]
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+段落段落段落段落段落\
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
