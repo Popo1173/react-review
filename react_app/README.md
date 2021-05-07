@@ -118,15 +118,37 @@ const 変数 = persistReducer {設定, レデューサー}
 ```
 
 ## 【パーシストゲートコンポーネント】の作成
+コンポーネントの表示を待たせるもの。<br>
+データをローカルに保存するため、書き込み完了まで表示を待たせる仕組み。<br>
+persistGateがないと、保存完了前にコンポーネントを表示してしまう。<br>
 JSXで表示を作成する場合、表示するコンポーネントをラップして利用する<br>
 Providerの内部に、パーシストゲートを用意して表示するコンポーネント類はその中に用意する。
 ```
 <Provider store={ストア名}>
+    //loadingの値は、値のローディング中の表示。nullでOK
     <PersistGate loading={ 値 } persistor={パーシスター}>
      ...表示するコンポーネント...
     </PersistGate>
 </Provider>
+```
 
+## 使用オブジェクトのインポート
+
+### パーシストレデューサー、パーシスター
+```
+//redux-persistに用意されている「persistStore, persistReducer」関数を利用する
+import {persistStore, persistReducer} from 'redux-persist'
+```
+### ストレージ
+```
+//storageというオブジェクトを利用する
+import storage from 'redux-persist/lib/storage'
+```
+### パーシストゲート
+```
+//redux-persist/integration/react内にあるコンポーネントを利用
+import {PersistGate} from 'redux-persist/integration/react'
+```
 
 
 
