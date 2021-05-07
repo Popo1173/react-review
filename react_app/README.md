@@ -79,11 +79,53 @@ Reduxでは、setStateする時、stateにある値をそのまま渡すと変�
 let newdata = state.data.slice();
 ````
 
+# ReduxPersist　
+ページをリロードしてもデータが初期化しない方法（永続化）<br>
+ReduxPersistは、「ローカルストレージ」を利用して、データを管理する。<br>
+ローカルストレージはHTMLでサポートされている。
+```
+npm install --save redux-persist
 
+```
 
+Reduxは必要な値の処理をまとめた「レデューサー」を作成し、これを元に「ストア」を作成したが、
+Reduxpersistは、通常の「レデューサー」と「ストア」に永続化のための「パーシストレデューサー」と「パーシストストア」が用意されている
 
+## 【ReduxPersist設定情報用意】
+あらかじめ、ReduxParsistの設定情報を値として用意しておく。<br>
+Webブラウザのローカルストレージはキーを使って値を保管するため、その値をあらかじめ用意する。
+```
+cons 変数　= {
+    key: キーの指定,　→　値を保管するキーを指定します。
+    使用ストレージ,　→　ReduxPersistに用意されている値を使う
+}
+```
+## 【PersistReducer】の作成
+ReduxPersistに用意されている「persistReducer」関数を利用する。<br>
+引数には「ReduxPersist設定情報」と「使用するレデューサー」を指定する。<br>
+このレデューサーは、Reduxで使用しているものをそのまま利用する。
+```
+const 変数 = persistReducer {設定, レデューサー}
+```
 
+## 【パーシスター】の作成
+まずは、通常のストアを作成し、それを元にパーシスターを作成する。<br>
+```
+//ストアはreduxのcreateStoreで作成。引数には「パーシストレデューサー」を指定
+ストア = createStore (パーシストレデューサー)
+//persistStore関数を呼び出して、パーシストストアを作成する。
+変数 = persistStore (ストア)
+```
 
+## 【パーシストゲートコンポーネント】の作成
+JSXで表示を作成する場合、表示するコンポーネントをラップして利用する<br>
+Providerの内部に、パーシストゲートを用意して表示するコンポーネント類はその中に用意する。
+```
+<Provider store={ストア名}>
+    <PersistGate loading={ 値 } persistor={パーシスター}>
+     ...表示するコンポーネント...
+    </PersistGate>
+</Provider>
 
 
 
