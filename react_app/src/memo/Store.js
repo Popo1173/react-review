@@ -1,24 +1,30 @@
 import {createStore} from 'redux';
 
-
+//memoデータの初期値
 const initData ={
+    //サムプルデータ、アクセス時刻
     data: [{message: 'Sample data', created:new Date()}],
+    //初回message表示
     message: 'please type message:',
     mode: 'default',
     fdata:[]
 }
 
 //レデューサー
+//stateに初期データをセット、actionを引数にする
 export function memoReducer(state = initData, action){
     //アクションタイプの値をチェックし、それぞれのcaseで分岐
     switch(action.type) {
+        //case ADDの場合　addReduceを返す
         case 'ADD':
             return addReduce(state, action);
+        //case DELETEの場合　deleteReduceを返す
         case 'DELETE':
             return deleteReduce(state, action);
+        //case FINDの場合  findReduceを返す     
         case 'FIND':
             return findReduce(state, action)
-        
+        //入力がない場合
         default:
             return state
     }
