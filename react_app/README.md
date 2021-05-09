@@ -181,7 +181,7 @@ const 変数　= {
         this.setState({
             check: f ? 'on' : ''
         });
-        //fがtrueならflush
+        //fがtrueならflushして更新
         if (f) {
             pstore.persist();
             pstore.flush();
