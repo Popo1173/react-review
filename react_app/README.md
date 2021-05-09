@@ -95,7 +95,7 @@ Reduxpersistは、通常の「レデューサー」と「ストア」に永続�
 あらかじめ、ReduxParsistの設定情報を値として用意しておく。<br>
 Webブラウザのローカルストレージはキーを使って値を保管するため、その値をあらかじめ用意する。
 ```
-cons 変数　= {
+const 変数　= {
     key: キーの指定,　→　値を保管するキーを指定します。
     使用ストレージ,　→　ReduxPersistに用意されている値を使う
 }
@@ -149,9 +149,49 @@ import storage from 'redux-persist/lib/storage'
 //redux-persist/integration/react内にあるコンポーネントを利用
 import {PersistGate} from 'redux-persist/integration/react'
 ```
+## ReduxPersistはストアの全てのデータを保存し、再現する」ため、必要なものと不要なものを分ける必要がる。
+ホワイトリスト、ブラックリストとして分ける<br>
+■ホワイトリスト →　保存する値<br>
+■ブラックリスト →　保存しない値<br>
+ReduxParsistの設定情報に追記する<br>
+```
+const 変数　= {
+    key: memo,　→　値を保管するキーを指定します。
+    storage: storage,　→　ReduxPersistに用意されている値を使う
 
-
-
+    //配列に追加するだけ
+    blacklist: ['message', 'mode', 'fdata'],
+    whitelist: ['data'],
+}
+```
+## 永続化の停止と再開
+データを初期化して最初から始めたい場合は、「パーシスター」を利用する<br>
+パーシスターは 「Persistor」というオブジェクトが用意されており、基本的なメソッドは以下の通り<br>
+一時的にデータの保存停止、再開、初期化が行える。
+- purge →　保存されたデータを削除
+- flush →　保留になっている変更をすぐに反映させ最新の状態にする
+- psuse →　永続化処理を一時的に停止する
+- persist →　停止していた永続化処理を再開する
+例）
+```
+    doChange(e) {
+        //checkの値を取得
+        let f = e.target.check;
+        //'on'なら値を更新
+        this.setState({
+            check: f ? 'on' : ''
+        });
+        //fがtrueならflush
+        if (f) {
+            pstore.persist();
+            pstore.flush();
+        }
+        //falseなら永続化を停止
+        else {
+            pstore.pause();
+        }
+    }
+```
 
 
 
