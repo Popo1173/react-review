@@ -16,7 +16,10 @@ import MemoStore, { memoReducer } from './memo/Store';
 //Redux Persistの設定
 const persistCofing = {
     key: 'memo',
-    storage,
+    storage:　storage,
+    //Store.jsのinitData初期値を保存させない
+    blacklist: ['message', 'mode', 'fdata'],
+    whitelist: ['data'],
 }
 
 //パーシストレデューサーの作成
@@ -35,3 +38,4 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+export default pstore;
