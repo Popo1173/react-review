@@ -8,45 +8,19 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 //パーシストゲート
 import { PersistGate } from 'redux-persist/integration/react';
-import './App.css';
+import './index.css';
 import App from './App';
+import MemoStore, { memoReducer } from './memo/Store';
 
-//ステートの値
-let state_value = {
-    counter: 0,
-    message: "COUNTER"
-}
-
-function counter(state = state_value, action) {
-    switch(action.type) {
-        case 'INCREMENT':
-        return {
-            counter: state.counter + 1,
-            message: "INCREMENT"
-        };
-        case 'DECREMENT':
-            return {
-                counter: state.counter - 1,
-                message: "DECREMENT"
-        };
-        case 'RESET':
-            return {
-                counter: 0,
-                message: "RESET"
-        };
-        default:
-            return state;
-        }
-}
 
 //Redux Persistの設定
 const persistCofing = {
-    key: 'root',
+    key: 'memo',
     storage,
 }
 
 //パーシストレデューサーの作成
-const persistedReducer = persistReducer(persistCofing, counter)
+const persistedReducer = persistReducer(persistCofing, memoReducer)
 
 //ストア、パーシスターの作成
 let store = createStore(persistedReducer)

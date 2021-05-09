@@ -30,14 +30,14 @@ class Item extends Component {
         //
         let d = this.props.value.created;
         //時刻を取得
-        let f = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+        
         return(
             <tr>
                 {/* inedx 通し番号を渡す */}
                 <th style={this.th}>NO, {this.props.index}</th>
                 {/* messageを渡す */}
                 <td style={this.td}>{this.props.value.message}</td>
-                <td style={this.date}>{f}</td>
+                <td style={this.date}>{this.props.value.created}</td>
             </tr>
         );
     }
