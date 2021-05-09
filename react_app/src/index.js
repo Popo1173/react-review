@@ -30,9 +30,9 @@ let pstore = persistStore(store);
 ReactDOM.render(
     //MemoStoreをProviderの中で利用することで、APPコンポーネント全てで使う
     <Provider store={store}>
-        <PersistGate loading={<p>LOADING...</p>} persistor={pstore}>
+        {/* <PersistGate loading={<p>loadding...</p>} persistor={pstore}> */}
             <App />
-        </PersistGate>
+        {/* </PersistGate> */}
     </Provider>,
     document.getElementById('root')
 );

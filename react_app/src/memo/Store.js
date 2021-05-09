@@ -33,11 +33,13 @@ export function memoReducer(state = initData, action){
 //レデュースアクション
 //メモの追加レデュース処理
 function addReduce(state, action){
+    let d = new Date();
+    let f = d.getHours() + ':' + d.getMinutes() + ':' + d.getSecond();
     let data = {
         //messageを格納
         message: action.message,
         //時刻を生成
-        created:new Date()
+        created: f
     };
     //入力された値を取りだして変数newdataにslice();で生成
     let newdata = state.data.slice();
