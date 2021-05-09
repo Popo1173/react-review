@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 //react-redux のconnect をインポートする
 import { connect } from 'react-redux';
-import './App.css';
 import Memo from './memo/Memo';
 import AddForm from './memo/AddForm';
 import FindForm from './memo/FindForm';
 import DelForm from './memo/DelForm';
-
 
 //APPコンポーネント
 class App extends Component {
   td = {
     with: "250px"
   }
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+  }
+
   render(){
     return (
       <div>
@@ -32,7 +31,7 @@ class App extends Component {
         </table>
         <Memo />
       </div>
-    )
+    );
   }
 }//APP-Component
 
