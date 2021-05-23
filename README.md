@@ -543,10 +543,10 @@ App = wrapWithConnect(App);
 ## 最初に作るのはStore
 Reduxを使ううえで、まず最初に作成するのは「データを扱うStore」<br>
 アプリケーションは極論すると、「用意されたデータ」と「それを処理するための処理を付け足し」でできている<br>
-
-
-
 - - -
+
+## FireBase
+react-app に```npm install --save firebase```をインストール
 
 
 
@@ -578,3 +578,8 @@ bind() メソッドは、呼び出された際に this キーワードに指定�
 [参考](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 [参考](https://foreignkey.toyao.net/archives/763)
 ```例)    this.doChange = this.doChange.bind(this); ```
+
+
+
+##
+
